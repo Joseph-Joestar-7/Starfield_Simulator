@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include <imgui/imgui.h>
+#include <imgui/imgui-SFML.h>
 #include "Star.h"
 #include <algorithm>
 
