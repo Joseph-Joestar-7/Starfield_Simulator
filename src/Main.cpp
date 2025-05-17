@@ -13,27 +13,38 @@ int main()
 {
     std::srand(static_cast<unsigned int>(std::time(0))); 
 	sf::RenderWindow window(sf::VideoMode(width,height), "Starfield Simulator");
+    ImGui::SFML::Init(window);
 
     Star stars[800];
 
     sf::CircleShape circle(2.0f);
     circle.setFillColor(sf::Color::White);
 
+    sf::Clock deltaClock;
     while (window.isOpen())
     {
         sf::Event event;
 
         while (window.pollEvent(event))
         {
+            ImGui::SFML::ProcessEvent(event);
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+
+        ImGui::SFML::Update(window, deltaClock.restart());
+
+        
+
+
         window.clear(sf::Color::Black);
 
         int mouseX = sf::Mouse::getPosition(window).x;       
         mouseX = std::clamp(mouseX, 0, width);
 
-        Star::setspeed(jmap(float(mouseX), 0.0f, float(width), 0, 20));
+        
+
+        //Star::setspeed(jmap(float(mouseX), 0.0f, float(width), 0, 20));
 
         float halfW = width * 0.5f;
         float halfH = height * 0.5f;
@@ -62,8 +73,8 @@ int main()
             window.draw(circle);
         }
         
-
+        ImGui::SFML::Render(window);
         window.display();
     }
-
+    ImGui::SFML::Shutdown();
 }
