@@ -11,8 +11,8 @@ float jmap(float value, float inputStart, float inputEnd, float outputStart, flo
 
 int main()
 {
-    std::srand(static_cast<unsigned int>(std::time(0))); 
-	sf::RenderWindow window(sf::VideoMode(width,height), "Starfield Simulator");
+    std::srand(static_cast<unsigned int>(std::time(0)));
+    sf::RenderWindow window(sf::VideoMode(width, height), "Starfield Simulator");
     ImGui::SFML::Init(window);
 
     Star stars[800];
@@ -35,20 +35,21 @@ int main()
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Starfield Speed");
+
         int speed = Star::getspeed();
         ImGui::SliderInt("Speed", &speed, 0, 20);
         Star::setspeed(speed);
+
+        /*static float angleX = 0.0f;
+        static float angleY = 0.0f;
+        ImGui::SliderFloat("Angle X", &angleX, -1.0f, 1.0f);
+        ImGui::SliderFloat("Angle Y", &angleY, -1.0f, 1.0f);*/
+
         ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+
         ImGui::End();
 
         window.clear(sf::Color::Black);
-
-        int mouseX = sf::Mouse::getPosition(window).x;       
-        mouseX = std::clamp(mouseX, 0, width);
-
-        
-
-        //Star::setspeed(jmap(float(mouseX), 0.0f, float(width), 0, 20));
 
         float halfW = width * 0.5f;
         float halfH = height * 0.5f;
@@ -57,9 +58,15 @@ int main()
         {
             star.Update();
 
+            //float rotatedX = star.getx() + angleX * star.getz();
+            //float rotatedY = star.gety() + angleY * star.getz();
+
             float invZ = 1.0f / star.getz();
             float sx = star.getx() * invZ * halfW + halfW;
             float sy = star.gety() * invZ * halfH + halfH;
+
+            //float sx = rotatedX * invZ * halfW + halfW;
+            //float sy = rotatedY * invZ * halfH + halfH;
 
             float invPZ = 1.0f / star.getpz();
             float px = star.getx() * invPZ * halfW + halfW;
@@ -76,7 +83,7 @@ int main()
             circle.setPosition(sx, sy);
             window.draw(circle);
         }
-        
+
         ImGui::SFML::Render(window);
         window.display();
     }
