@@ -34,8 +34,12 @@ int main()
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
-        
-
+        ImGui::Begin("Starfield Speed");
+        int speed = Star::getspeed();
+        ImGui::SliderInt("Speed", &speed, 0, 20);
+        Star::setspeed(speed);
+        ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+        ImGui::End();
 
         window.clear(sf::Color::Black);
 

@@ -1,2 +1,4 @@
 ﻿  Main.cpp
+C:\Users\RITABAN\Desktop\CS Playground\SFML\Starfield_Simulator\src\Main.cpp(38,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\RITABAN\Desktop\CS Playground\SFML\Starfield_Simulator\src\Main.cpp(40,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Starfield_Simulator.vcxproj -> C:\Users\RITABAN\Desktop\CS Playground\SFML\Starfield_Simulator\x64\Debug\Starfield_Simulator.exe
