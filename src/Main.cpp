@@ -8,7 +8,6 @@ float jmap(float value, float inputStart, float inputEnd, float outputStart, flo
     return outputStart + (outputEnd - outputStart) * ((value - inputStart) / (inputEnd - inputStart));
 }
 
-
 int main()
 {
     std::srand(static_cast<unsigned int>(std::time(0)));
