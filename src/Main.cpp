@@ -2,7 +2,6 @@
 #include <imgui/imgui.h>
 #include <imgui/imgui-SFML.h>
 #include "Star.h"
-#include <algorithm>
 
 float jmap(float value, float inputStart, float inputEnd, float outputStart, float outputEnd) {
     return outputStart + (outputEnd - outputStart) * ((value - inputStart) / (inputEnd - inputStart));
